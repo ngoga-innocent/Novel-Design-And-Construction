@@ -1,0 +1,70 @@
+{% load static %}
+
+<div
+  class="bg-[#07046ABD] flex flex-row justify-between px-3 md:px-10 md:items-center py-2"
+>
+  <div class="">
+    <img
+      src="{% static 'images/logo.png' %}"
+      class="w-20 h-20 rounded-full"
+      alt=""
+    />
+  </div>
+  <div
+    class="nav md:static py-8 md:py-auto pl-3 md:ml-0 md:min-h-fit md:w-auto md:flex flex-col"
+  >
+    <ion-icon
+      name="menu"
+      class="text-white md:hidden text-4xl cursor-pointer toggle_menu"
+    ></ion-icon>
+    <ul
+      class="nav_links hidden md:flex flex-col gap-y-4 items-start md:flex-row md:items-center gap-x-9 min-h-screen md:min-h-fit md:w-auto w-[80%] bg-[rgb(9,27,57)] rounded-md py-3 md:py-0 md:bg-transparent absolute right-0 px-3 md:static"
+    >
+      <li><a class="active" href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'portfolio' %}">Our Portfolio</a></li>
+      <li class="about relative">
+        <a href="">About</a>
+        <i class="fa-solid fa-caret-down text-white font-bold text-lg px-3"></i>
+        <ul
+          class="about_us_child md:absolute ml-3 px-1 py-3 rounded-md md:bg-black z-10"
+        >
+          <li class="py-2">
+            <a href="{% url 'about_us' %}" class="text-capitalize text-sm"
+              >About Us</a
+            >
+          </li>
+          <li class="py-2">
+            <a href="{% url 'contact_us' %}" class="text-capitalize text-sm"
+              >Contact Us</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li class="training">
+        <a href="">Training</a>
+        <i class="fa-solid fa-caret-down text-white font-bold text-lg px-3"></i>
+        <ul
+          class="training_child md:absolute ml-3 px-1 py-3 rounded-md md:bg-black z-10"
+        >
+          <li class="py-2"><a href="{% url 'courses' %}">Courses</a></li>
+          <li class="py-2">
+            <a href="{% url 'instructors' %}">Instructors</a>
+          </li>
+        </ul>
+      </li>
+      <!-- <li>
+        <a href="">Ressources</a
+        ><i
+          class="fa-solid fa-caret-down text-white font-bold text-lg px-3"
+        ></i>
+      </li>
+      <li>
+        <a href=""
+          ><i
+            class="fa-solid fa-magnifying-glass text-white font-bold text-lg px-3"
+          ></i
+        ></a>
+      </li> -->
+    </ul>
+  </div>
+</div>

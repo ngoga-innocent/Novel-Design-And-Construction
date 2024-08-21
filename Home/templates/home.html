@@ -1,0 +1,226 @@
+{% extends 'base.html' %} {% block content %}
+<div class="flex flex-col md:flex-row flex-1 bg-webcolor bg-opacity-80 py-14 md:py-28 items-center">
+  <div class="flex-1 px-14 gap-y-5 md:gap-y-10">
+    <h1 class="text-[1.3rem] md:first_heading max-w-[90%] md:max-w-[70%] text-white">
+      Novel Design and Construction Ltd Creating reality building your Vision
+    </h1>
+    <p class=" text-md md:text-lg text-white max-w-[80%]  mt-7">
+      transform your architectural visions into precise and dynamic 3D models.
+      Our expertise ensures meticulous planning, efficient collaboration, and
+      outstanding results that exceed client expectations.
+    </p>
+    <div class="flex-end mt-17 py-4 md:mt-20">
+      <p class="text-[#dbdbda] font-bold text-lg my-2">
+        You can Choose one of our preffered Courses
+      </p>
+      {% if courses %}
+      <div class="flex flex-row flex-wrap gap-x-5 gap-y-3 items-center my-3">
+        {% for course in courses %}
+        <a
+          class="bg-webcolor bg-opacity-45 text-white font-bold px-4 py-2 mx-2 rounded-md hover:bg-[#d7d4d4] hover:text-webcolor transition-all"
+          href="{% url 'single_course' course.id %}"
+          >{{course.title}}</a
+        >
+        {% endfor %}
+      </div>
+      <a
+          class="bg-webcolor bg-opacity-45 text-white font-bold px-4 py-2 mx-2 rounded-md hover:bg-[#d7d4d4] hover:text-webcolor transition-all"
+          href="{% url 'courses' %}"
+          >See More</a
+        >
+      {% endif %}
+    </div>
+  </div>
+  <div class="flex-1 max-w-[90%] mx-auto mt-12 md:mt-0 md:max-w-[50%] relative">
+    <!-- <div class="flex flex-row justify-between">
+      <i
+        class="fa-solid fa-caret-left text-[3rem] text-primary absolute top-[50%] left-10"
+      ></i>
+      <i
+        class="fa-solid fa-caret-right text-xl absolute top-[50%] right-[30%]"
+      ></i>
+    </div> -->
+    {% if actions %}
+    <div class="flex flex-row overflow-scroll max-w-[100%]">
+      {% for action in actions %}
+      <div
+        class="min-w-72 h-96 rounded-md mx-3 overflow-x-hidden scrollbar_hidden"
+      >
+        <img class="w-[100%] h-[100%]" src="{{action.thumbnail.url}}" alt="" />
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+<!-- Second Section -->
+<div
+  class="self-center p-2 -mt-[4%] w-[90%] mx-auto bg-white rounded-xl flex items-center justify-center flex-col md:flex-row gap-x-3"
+>
+  <div
+    class="flex flex-col items-center shadow-sm w-[95%] md:w-[32%] shadow-black z-10 p-2 rounded-md text-center gap-y-3"
+  >
+    <i class="fa-solid fa-archway text-2xl"></i>
+    <h2 class="font-bold text-lg">
+      Architectural and structural Designs of Building
+    </h2>
+    <p>
+      Architectural and structural designs of buildings are expertly crafted to
+      ensure aesthetic appeal, functionality, and structural integrity, meeting
+      the highest standards of quality and safety.
+    </p>
+  </div>
+  <div
+    class="flex flex-col items-center shadow-sm w-[100%] md:w-[32%] my-3 shadow-black z-10 p-2 rounded-md text-center gap-y-3"
+  >
+    <i class="fa-solid fa-building text-2xl"></i>
+    <h2 class="font-bold text-lg">Building Permit application</h2>
+    <p>
+      Building Permit applications are meticulously prepared to ensure
+      compliance with local regulations, expediting approval and facilitating
+      smooth project commencement
+    </p>
+  </div>
+  <div
+    class="flex flex-col items-center shadow-sm w-[95%] md:w-[32%] shadow-black z-10 p-2 rounded-md text-center gap-y-3"
+  >
+    <i class="fa-solid fa-trowel-bricks text-2xl"></i>
+    <h2 class="font-bold text-lg">Project/Site Management</h2>
+    <p>
+      Project/Site Management ensures efficient coordination, timely completion,
+      and adherence to quality standards, ensuring project success from
+      inception to completion.
+    </p>
+  </div>
+</div>
+<!-- Third Section -->
+<div
+  class="bg-[#3c3a3a] w-[98%] mx-auto rounded-md md:w-full items-center py-4 text-white text-center my-4 md:text-[1.2rem]"
+>
+  Join Now Novel Design and Construction Ltd
+</div>
+<!-- Award Section -->
+<div class="flex items-center justify-center flex-col py-4 md:py-12 w-[85%] mx-auto">
+  {% if award %} {% for one_award in award %}
+  <div class="flex flex-col md:flex-row items-center justify-center">
+    <div class="overflow-hidden rounded-lg max-w-[98%] md:max-w-[40%]">
+      <img
+        class="flex-1 w-[100%] h-[20%]"
+        src="{{ one_award.award_image.url }}"
+        alt=""
+      />
+    </div>
+    <div
+      class="md:-ml-14 z-10 bg-white w-[98%] mx-auto my-2 md:w-[50%] py-3 px-3 shadow-sm shadow-black rounded-md"
+    >
+      <p class="mt-2 text-xl font-bold max-w-[90%] md:max-w-[70%]">
+        {{ one_award.award_title }}
+      </p>
+      <p class="mt-2 text-sm md:text-md max-w-[90%]  md:max-w-[70%]">{{ one_award.award_description }}</p>
+    </div>
+  </div>
+  {% endfor %} {% endif %}
+</div>
+<!-- Section 5 -->
+<div class="flex flex-col md:flex-row py-12 text-center md:items-center w-[95%] md:w-[85%] mx-auto my-10 md:my-24">
+  <div class="flex-1">
+    <h1 class="text-[1.3rem] md:first_heading text-slate-500">Yes, We deliver!</h1>
+    <p class="w-[90%] mt-3">
+      We are a renowned firm specializing in Novel Design and Construction. We
+      have over years of experience in the field and are committed to providing
+      excellent results for our clients.Serving as a professional training and
+      certification, we are the one behind digital transformation of major
+      engineering and infrastructure companies in the country.
+    </p>
+  </div>
+  <div class="flex-1">
+    {% if softwares %}
+    <div class="grid grid-cols-1 mt-9 md:grid-cols-2 gap-3 w-[100%]">
+      {% for software in softwares %}
+      <div
+        class="flex flex-row items-center gap-x-4 w-[100%] max-h-[60%] h-[60%]"
+      >
+        <img
+          class="w-[100%] h-32 rounded-md"
+          src="{{ software.thumbnail.url }}"
+          alt=""
+        />
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+<!-- Section 6 -->
+<div class="py-14 section_5 flex flex-col items-center justify-center">
+  <div class="flex flex-col text-center justify-center md:flex-row-reverse w-[95%] md:w-[85%] mx-auto items-center">
+    <div class="flex-1">
+      <h1 class="first_heading text-white">
+        Our Commitment to Excellence
+      </h1>
+      <p class="w-[90%] text-[#dedcdc]">
+        We at Novel Design and Construction Ltd believe in continuously
+        improving our services and products to meet the ever-evolving needs of
+        our clients. Our commitment to excellence lies in our dedication,
+        passion, and ability to deliver results that exceed our customers'
+        expectations.
+      </p>
+      <hr class="bg-white  flex h-1 my-12 w-[80%] mx-auto md:w-[50%]" />
+      <p class="w-[90%] hidden md:flex text-[#dedcdc]">
+        "At our company, we don't rely on just arranging papers or showcasing
+        experiences to gain your trust. Our focus is on ensuring that you
+        receive the highest level of expertise and support, which truly sets us
+        apart and helps build lasting relationships based on trust and
+        professionalism."
+      </p>
+    </div>
+    <div class="flex-1 h-[100%]">
+      {% if events %}
+      <div>
+        {% for event in events %}
+        <div
+          class="w-[80%] mx-auto h-[40%] overflow-hidden border border-white rounded-md"
+        >
+          <img
+            src="{{event.event_image.url}}"
+            class="object-contain w-[100%]"
+            alt=""
+          />
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- Testimonials -->
+  <div class="w-[85%] mx-auto text-center my-7 py-20">
+    <h1 class=" text-[1.7rem] md:first_heading text-slate-500 font-bold">Testimonials</h1>
+    <div class="flex flex-col md:flex-row gap-3 flex-wrap gap-x-3">
+      {% if testimonials %} {% for testimonial in testimonials %}
+      <div
+        class="flex flex-col items-center w-[90%] mx-auto md:w-[30%] py-4 px-4 shadow-sm shadow-black rounded-md"
+        style="background-color: #f7f7f7;"
+      >
+        <p class="text-md text-slate-500">
+          "{{ testimonial.testimonial_description }}"
+        </p>
+        <p class="text-sm text-gray-500">
+          {{ testimonial.client_description }}
+        </p>
+
+        <div class="flex flex-row gap-x-2 self-start flex-end my-3 items-center">
+          <div class="w-14 h-14 max-w-14 max-h-14 rounded-full overflow-hidden border border-webcolor">
+            <img src="{{testimonial.testimonial_image.url}}" class="w-20 h-20 rounded-full" alt="">
+          </div>
+          <div class="flex flex-col">
+            <p class="font-bold">{{testimonial.testimonial_name}}</p>
+            <p class="text-sm">{{testimonial.testimonial_position}}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %} {% endif %}
+    </div>
+  </div>
+  {% endblock content %}
+</div>

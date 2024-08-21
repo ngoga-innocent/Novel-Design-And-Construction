@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Novel Design and Construction</title>
+    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="{% static 'Js/jquery.js' %}"></script>
+    <link
+      rel="shortcut icon"
+      href="{% static 'images/logo.png' %}"
+      type="image/x-icon"
+    />
+  </head>
+  <body class="relative flex-1 w-full">
+    <div class="">
+      {% include 'nav.html' %}
+    </div>
+    <div class="flex-1 content">
+      {% block content %} {% endblock content %}
+    </div>
+    <div>
+      {% include 'footer.html' %}
+    </div>
+
+    {% block Additional_scripts %} {% endblock Additional_scripts %}
+
+    <script>
+      $(document).ready(function () {
+        $(".toggle_menu").on("click", function () {
+          let name = $(this).attr("name");
+
+          $(this).attr("name", name === "menu" ? "close" : "menu");
+          $(".nav_links").toggleClass("hidden");
+          $(".nav_links").toggleClass("flex");
+        });
+      });
+    </script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>

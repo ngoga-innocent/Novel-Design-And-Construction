@@ -1,0 +1,158 @@
+{% extends 'base.html' %} {% block content %}
+<div class="flex flex-col">
+  <div class="flex flex-col w-[90%] md:w-[70%] mx-auto py-10">
+    <h1 class="first_heading">{{course.title}}</h1>
+    <div class="flex flex-col md:flex-row gap-x-9">
+      <div
+        class="w-[100%] md:w-[30%] rounded-t-md px-3 bg-slate-300 py-4 flex flex-col items-center"
+      >
+        <img src="{{course.thumbnail.url}}" class="h-[100%]" />
+        <p class="my-2 text-sm">{{course.description}}</p>
+        <button type="button" id="Register_course" data-course-id="{{course.id}}"
+          class="py-2 gap-x-2 px-2 flex flex-row items-center hover:bg-opacity-90 bg-webcolor my-3 rounded-lg text-white font-bold"
+          
+          >Register For This Course
+          <div
+            class="w-7 h-7 hover:bg-webcolor hover:text-white transition-all duration-500 rounded-full items-center text-center justify-center border"
+          >
+            <i class="fa-solid fa-arrow-right text-sm text-white font-bold"></i>
+          </div>
+        </button>
+      </div>
+      <div class="flex-1">
+        <h1 class="font-bold text-[1.4rem]">INSTRUCTOR:</h1>
+        <div class="flex flex-row gap-x-3">
+          <img
+            src="{{course.lecture.profile_image.url}}"
+            class="w-20 h-20 rounded-full"
+          />
+          <div>
+            <h1
+              class="font-bold text-[1.2rem]"
+              style="text-transform: capitalize;"
+            >
+              {{course.lecture.user.username}}
+            </h1>
+            <p class="text-sm" style="text-transform: uppercase;">
+              {{ course.lecture.position}}
+            </p>
+            <p class="text-sm" style="text-transform: uppercase;">
+              {{ course.lecture.specialization}}
+            </p>
+          </div>
+        </div>
+        <div class="h-1 w-[90%] bg-webcolor rounded-md my-10"></div>
+        <div>
+          <p>{{course.teacher_course_description|safe}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="py-7 my-2">
+      <h1 class="text-bold text-[1.2rem] my-4">Who Can Take This Course</h1>
+      <p>{{course.whocanjoin | safe}}</p>
+    </div>
+  </div>
+  <div
+    class="modal_container hidden min-w-full min-h-screen flex-col absolute top-0 "
+  >
+  <div class="flex flex-col items-center min-w-full min-h-screen absolute  h-[100%] w-[100%] justify-center">
+    <div class="bg-white flex flex-col  rounded-lg py-6 px-6 w-[90%] md:w-[60%]">
+        <div class="flex flex-row items-center justify-between">
+            <h1 class="text-2xl font-bold">Request to be  Student</h1>
+            <div class="flex flex-row gap-x-3 self-end py-6">
+          <button
+            class="close px-4 py-2  bg-webcolor text-white font-bold rounded-md hover:bg-webcolor-dark"
+            
+          >
+            Close
+          </button>
+        </div>
+        </div>
+      <div class="flex flex-col">
+        
+        <!-- <p class="text-center">Fill the Form</p> -->
+        
+        <form action="" class="register_student_form" >
+            {% csrf_token %}
+            <div class="mb-4 flex flex-col gap-y-1">
+              
+              <input type="hidden" value="{{course.id}}" id="course_id" name="course_id" required class="border border-webcolor w-[60%] rounded-lg py-2" />
+            </div>
+            <div class="mb-4 flex flex-col gap-y-1">
+              <label for="name">First Name *:</label>
+              <input type="text" id="name" name="first_name" required class="border border-webcolor w-[90%] md:w-[60%] rounded-lg py-2" />
+            </div>
+            <div class="mb-4 flex flex-col gap-y-1">
+              <label for="name">Middle Name (optional):</label>
+              <input type="text" id="name" name="middle_name"  class="border border-webcolor w-[90%] md:w-[60%] rounded-lg py-2" />
+            </div>
+            <div class="mb-4 flex flex-col gap-y-1">
+              <label for="name">Last Name *:</label>
+              <input type="text" id="name" name="last_name" required class="border border-webcolor w-[90%] md:w-[60%] rounded-lg py-2" />
+            </div>
+            <div class="mb-4 flex flex-col gap-y-1">
+              <label for="email">Email(optional):</label>
+              <input type="email" id="email" name="email"  class="border border-webcolor w-[90%] md:w-[60%] rounded-lg py-2"/>
+            </div>
+            <div class="mb-4 flex flex-col gap-y-1">
+              <label for="phone">Phone *:</label>
+              <input type="tel" id="phone" name="phone" required class="border border-webcolor w-[90%] md:w-[60%] rounded-lg py-2" />
+            </div>
+            <div class="flex flex-row gap-x-3">
+              <button type="submit"  class="px-4 py-2 bg-webcolor text-white font-bold rounded-md hover:bg-webcolor-dark">
+                Register
+              </button>
+              
+        </form>
+      </div>
+    </div></div>
+    
+  </div>
+</div>
+  {% endblock content %}
+  
+  {% block Additional_scripts %}
+    <Script>
+        $(document).ready(function(){
+            $("#Register_course").on('click',function(){
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+               
+                var course_id = $(this).data("course-id");
+                // open modal
+                $(".modal_container").toggleClass("hidden");
+            });
+            $(".close").click(function(){
+                $(".modal_container").fadeOut("slow",function(){
+                    $(this).toggleClass("hidden");
+                    window.location.reload();
+                })
+                
+            });
+
+            //Form Submit
+            $(".register_student_form").submit(function(e){
+                e.preventDefault();
+                var form = $(this);
+                console.log(form.serialize());
+                $.ajax({
+                    url: "{% url 'courses' %}",
+                    type: "POST",
+                    data: form.serialize(),
+                    success: function(response){
+                        alert("Registration successful")
+                        $(".register_student_form")[0].reset();
+                        $(".modal_container").fadeOut("slow",function(){
+                            $('modal_container').addClass("hidden");
+                        })
+                    },
+                    error: function(error){
+                        alert("Error in Registration, Please Try Again")
+                        console.log(error);
+                    }
+                })
+            })
+        })
+    </Script>
+  {% endblock Additional_scripts %}
+    
+

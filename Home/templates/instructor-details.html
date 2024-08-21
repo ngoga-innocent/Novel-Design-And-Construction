@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="w-[65%] mx-auto flex flex-col py-14">
+  <div class="flex flex-row gap-x-14 items-center">
+    <div class="flex flex-col items-center">
+      <div
+        class="max-w-60 max-h-60 w-60 h-60 rounded-full overflow-hidden border"
+      >
+        <img
+          src="{{instructor.profile_image.url}}"
+          class="w-full h-full object-cover"
+          style="object-position: top;"
+          alt=""
+        />
+      </div>
+      <div class="my-5 flex flex-col">
+        <p class="text-slate-500 font-bold text-xl">
+          {{ instructor.user.first_name }} {{instructor.user.last_name}}
+        </p>
+      </div>
+      <div class="flex flex-row gap-x-7 items-center">
+        <a href="" target="_blank"
+          ><img
+            src="{% static 'images/icons/facebook.svg' %}"
+            class="w-5 h-5"
+            alt=""
+        /></a>
+        <a href="" target="_blank"
+          ><img
+            src="{% static 'images/icons/instagram.svg' %}"
+            class="w-5 h-5"
+            alt=""
+        /></a>
+        <a href="" target="_blank"
+          ><img
+            src="{% static 'images/icons/twitter.svg' %}"
+            class="w-5 h-5"
+            alt=""
+        /></a>
+      </div>
+    </div>
+    <div class="flex flex-col w-[70%]">
+      <h1 class="text-[2rem ] first_heading mb-12 font-bold">
+        {{ instructor.position }} specialized in {{instructor.specialization}}
+      </h1>
+      <p class="text-[1.2rem]">{{instructor.description|safe }}</p>
+    </div>
+  </div>
+</div>
+{% endblock content %}

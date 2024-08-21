@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="w-[85%] mx-auto flex flex-col gap-y-5">
+  <a
+    target="_blank"
+    href="{{portfolio.portfolio_image.url}}"
+    class="h-52 w-72 rounded-lg max-w-64 max-h-52 overflow-hidden"
+  >
+    <img
+      src="{{portfolio.portfolio_image.url}}"
+      class="object-contain w-[100%] h-[100%]"
+      alt=""
+    />
+  </a>
+  <h1 class="font-bold text-2xl text-webcolor">
+    {{portfolio.portfolio_title}}
+  </h1>
+  <div>
+    <p>{{portfolio.portfolio_description |safe}}</p>
+  </div>
+</div>
+{% endblock content %}

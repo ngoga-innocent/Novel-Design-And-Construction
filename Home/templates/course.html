@@ -1,0 +1,50 @@
+{% extends 'base.html' %} {% block content %}
+<div class="flex flex-col w-[85%] mx-auto py-7">
+  <div class="py-10">
+    <h1 class="font-bold text-xl first_heading my-4 text-gray-700">
+      OUR COURSES
+    </h1>
+    <p class="md:w-[75%] w-[95%]">
+      On this page, you’ll find a dynamic array of carefully created training
+      programs designed to advance your career forward. Each course is crafted
+      to meet industry standards and demands, integrating cutting-edge training
+      methodologies and facilities.
+    </p>
+  </div>
+  {% if courses %}
+  <div class="grid md:grid-cols-3 gap-2">
+    {% for course in courses %}
+    <div
+      class="card flex flex-col p-4 border rounded-lg hover:bg-slate-200 hover:shadow-sm hover:shadow-black hover:transition-all duration-5000 hover:mouse-pointer hover:z-10"
+    >
+      <img
+        src="{{course.thumbnail.url}}"
+        class="rounded-md w-[96%] h-44 mx-auto"
+        alt=""
+      />
+      <div class="w-[96%] mx-auto my-2 flex flex-col">
+        <h1 class="font-bold text-lg my-3" style="text-transform: uppercase;">
+          {{course.title}}
+        </h1>
+        <p>{{course.description|slice:':100' }}</p>
+        <div class="flex flex-row gap-x-2 items-center">
+          <a
+            href="{% url 'single_course' course.id %}"
+            class="text-webcolor font-bold"
+            >Learn More</a
+          >
+          <div
+            class="w-7 h-7 hover:bg-webcolor hover:text-white transition-all duration-500 rounded-full items-center text-center justify-center border"
+          >
+            <i class="fa-solid fa-arrow-right text-sm text-webcolor"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p>No course Available</p>
+  {% endif %}
+</div>
+{% endblock content %}

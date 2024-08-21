@@ -1,0 +1,100 @@
+{% extends 'base.html' %} {% block content %}
+<div class="w-[70%] mx-auto flex flex-col pt-10">
+  <h1 class="font-bold">contact us</h1>
+  <h1 class="text-[3rem] font-bold my-2">
+    Can't Find What you are looking for?
+  </h1>
+  <div class="flex flex-col md:flex-row gap-x-14 items-center">
+    <div class="flex flex-row items-center gap-x-2 my-10">
+      <p class="font-bold">Hotline:</p>
+      <p>+250786951624</p>
+    </div>
+    <div class="flex flex-row items-center gap-x-2">
+      <p class="font-bold">Email:</p>
+      <p>celestinkanyamahanga1@gmail.com</p>
+    </div>
+  </div>
+  <div class="flex flex-col py-8">
+    <p class="font-bold text-[1.4rem]">Your Details</p>
+    <p class="text-gray-400">Let us know how to get back to you</p>
+    <form action="" class="contact_form my-4 gap-y-10 flex flex-col">
+      {% csrf_token %}
+      <div class="flex flex-row justify-between gap-x-4 item-center">
+        <div class="flex flex-1 flex-col gap-y-3">
+          <label for="">First Name*</label>
+          <input
+            required
+            type="text"
+            name="first_name"
+            placeholder="Ngoga"
+            class="py-4 px-2 outline-none rounded-md flex-1 border-2 bg-slate-300"
+          />
+        </div>
+        <div class="flex flex-col flex-1 gap-y-3">
+          <label for="">Last Name*</label>
+          <input
+            required
+            type="text"
+            name="last_name"
+            placeholder="Innocent Patrick"
+            class="py-4 px-2 outline-none rounded-md flex-1 bg-slate-300 border-2"
+          />
+        </div>
+      </div>
+      <div class="flex flex-col flex-1 my-2">
+        <label for="" class="font-bold">Email*</label>
+        <input
+          required
+          type="email"
+          name="email"
+          placeholder="ngogainn.@gmail.com"
+          class="py-4 px-2 outline-none rounded-md flex-1 bg-slate-300 border-2"
+        />
+      </div>
+      <div class="flex flex-1 flex-col my-3">
+        <label for="" class="font-bold">Question/Comment</label>
+        <textarea
+          required
+          class="border-2 rounded-lg h-24 bg-slate-300 outline-none px-3 py-5"
+          name="comment"
+          id=""
+          cols="30"
+        ></textarea>
+      </div>
+      <button
+        class="bg-webcolor py-3 px-8 rounded-lg flex flex-row items-center justify-center gap-x-3"
+        type="submit"
+      >
+        <p class="font-bold text-white">Send Message</p>
+        <div
+          class="w-6 h-6 spinner hidden rounded-full border-dashed border-2 border-white animate-spin"
+        ></div>
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock content %} {% block Additional_scripts %}
+<script>
+  $(document).ready(function () {
+    $(".contact_form").on("submit", function (e) {
+      e.preventDefault();
+      $(".spinner").removeClass("hidden");
+      var data = $(this).serialize();
+      console.log(data);
+      $.ajax({
+        url: "{% url 'contact_us' %}",
+        type: "POST",
+        data: data,
+        success: function (response) {
+          alert("Message sent successfully!");
+          $(".contact_form")[0].reset();
+          $(".spinner").addClass("hidden");
+        },
+        error: function (error) {
+          console.error(error);
+        },
+      });
+    });
+  });
+</script>
+{% endblock Additional_scripts %}
