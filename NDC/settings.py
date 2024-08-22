@@ -19,7 +19,7 @@ SECRET_KEY = 'django-insecure-cdh^fimo(hyib@g3*4k8rk$5gnp6g12ht#i0kx%cbi3pdzc0+*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['noveldesignandconstructionltd.onrender.com','localhost','https://www.noveldesignandconstructionltd.com']
+ALLOWED_HOSTS = ['noveldesignandconstructionltd.onrender.com','localhost','noveldesignandconstructionltd.com']
 
 
 # Application definition
