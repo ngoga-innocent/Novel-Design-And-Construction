@@ -17,9 +17,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-cdh^fimo(hyib@g3*4k8rk$5gnp6g12ht#i0kx%cbi3pdzc0+*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['noveldesignandconstructionltd.onrender.com']
+ALLOWED_HOSTS = ['noveldesignandconstructionltd.onrender.com','localhost','https://www.noveldesignandconstructionltd.com']
 
 
 # Application definition
@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'Home',
     'Course',
     'django_ckeditor_5',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -131,8 +133,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'ngogainnocent1@gmail.com'
-EMAIL_HOST_PASSWORD = 'uxhd zxfo ujrj jvta'
+EMAIL_HOST_USER = os.getenv("EMAIL")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PASSWORD")
 # CUSTOM COLOR
 customColorPalette = [
         {
@@ -221,3 +223,16 @@ CKEDITOR_5_CONFIGS = {
         }
     }
 }
+# STORAGES = {
+#     # ...
+#     "staticfiles": {
+#         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+#     },
+# }
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+CLOUDINARY_STORAGE={
+    'CLOUD_NAME':'dkjcjttt8',
+    'API_KEY':'	487462532878996',
+    "API_SECRET":'lWb5w0qv5Ryy61Adru2eplgaoD0'
+}
+DEFAULT_FILE_STORAGE='cloudinary_storage.storage.MediaCloudinaryStorage'

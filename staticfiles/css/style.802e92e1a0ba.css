@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.content {
+  flex: 1;
+}
+
+.scrollbar_hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar_hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.first_heading {
+  font-size: 37px;
+  font-weight: bold;
+}
+.nav ul li a {
+  color: white !important;
+  font-weight: bold;
+}
+.nac ul li a .active {
+  color: #340505 !important;
+}
+.nav ul li a:hover {
+  color: rgb(197, 169, 116);
+}
+.about_us_child,
+.training_child {
+  display: none;
+  width: 100%;
+}
+
+.about_us_child ul li a {
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+.about,
+.training {
+  display: inline-block;
+  position: relative;
+}
+
+.about:hover .about_us_child,
+.about_us_child:hover {
+  display: block;
+}
+/* Show the training child menu when hovering over the training menu item */
+.training:hover .training_child,
+.training_child:hover {
+  display: block;
+}
+.section_5 {
+  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8)),
+    url("../images/hero_bg.21fabea9b4a5.png") no-repeat center center/cover;
+}
+.modal_container {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+input {
+  outline: none;
+  padding-left: 10px;
+}
+.nav_links {
+  transform: translateX(-10px);
+  transition: all 1s ease-in-out;
+}
