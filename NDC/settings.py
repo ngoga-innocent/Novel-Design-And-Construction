@@ -17,7 +17,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-cdh^fimo(hyib@g3*4k8rk$5gnp6g12ht#i0kx%cbi3pdzc0+*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -81,7 +81,7 @@ DATABASES = {
     }
 }
 DATABASES['default']=dj_database_url.parse(os.getenv("DATABASE_URL"))
-
+# 
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -231,9 +231,9 @@ CKEDITOR_5_CONFIGS = {
 # }
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 CLOUDINARY_STORAGE={
-    'CLOUD_NAME':'dkjcjttt8',
-    'API_KEY':'	487462532878996',
-    "API_SECRET":'lWb5w0qv5Ryy61Adru2eplgaoD0'
+    'CLOUD_NAME':"dkjcjttt8",
+    'API_KEY':"245231182152649",
+    "API_SECRET":"P2CF_ZePa9VM_-nHCpyZ68W1Vfw"
 }
 DEFAULT_FILE_STORAGE='cloudinary_storage.storage.MediaCloudinaryStorage'
 LOGGING = {
