@@ -31,23 +31,16 @@
       {% endif %}
     </div>
   </div>
-  <div class="flex-1 max-w-[90%] mx-auto mt-12 md:mt-0 md:max-w-[50%] relative">
-    <!-- <div class="flex flex-row justify-between">
-      <i
-        class="fa-solid fa-caret-left text-[3rem] text-primary absolute top-[50%] left-10"
-      ></i>
-      <i
-        class="fa-solid fa-caret-right text-xl absolute top-[50%] right-[30%]"
-      ></i>
-    </div> -->
+  <div class="flex-1 max-w-[90%] w-[90%] h-[90%] md:w-[50%] mx-auto mt-12 md:mt-0 md:max-w-[50%] relative">
+    
     {% if actions %}
-    <div class="flex flex-row overflow-scroll max-w-[100%]">
+    <div class="flex flex-row h-[100%] overflow-x-scroll max-w-[100%]">
       {% for action in actions %}
-      <div
-        class="min-w-72 h-96 rounded-md mx-3 overflow-x-hidden scrollbar_hidden"
+      <a href="{{action.thumbnail.url}}" target="_blank"
+        class="min-w-72 h-1/2 min-h-1/2 rounded-md mx-3 overflow-x-hidden scrollbar_hidden"
       >
-        <img class="w-[100%] h-[100%]" src="{{action.thumbnail.url}}" alt="" />
-      </div>
+        <img class="w-[100%] h-1/2 object-contain" src="{{action.thumbnail.url}} "  alt="" />
+    </a>
       {% endfor %}
     </div>
     {% endif %}
