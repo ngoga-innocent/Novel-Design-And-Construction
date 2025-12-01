@@ -80,7 +80,21 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-DATABASES['default']=dj_database_url.parse(os.getenv("DATABASE_URL"))
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'umuzikig_noveldesign',
+        'USER': 'umuzikig_noveldesign',
+        'PASSWORD': 'Ngoga@1patrick',
+        'HOST': 'localhost',   # often 'localhost' or Asura-provided host
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        }
+    }
+}
+
+# DATABASES['default']=dj_database_url.parse(os.getenv("DATABASE_URL"))
 # 
 
 # Password validation
