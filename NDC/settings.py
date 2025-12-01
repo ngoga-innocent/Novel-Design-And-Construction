@@ -35,8 +35,8 @@ INSTALLED_APPS = [
     'Home',
     'Course',
     'django_ckeditor_5',
-    'cloudinary',
-    'cloudinary_storage',
+    # 'cloudinary',
+    # 'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
